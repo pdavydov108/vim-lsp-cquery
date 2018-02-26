@@ -1,6 +1,6 @@
 let s:last_req_id = 0
 
-function! cquery#references#derived() abort
+function! s:request(method) abort
     let l:server_names = lsp#get_server_names()
 
     if len(l:server_names) == 0 || count(l:server_names, 'cquery') == 0
@@ -13,7 +13,7 @@ function! cquery#references#derived() abort
 
     let l:ctx = { 'counter': 1, 'list':[], 'last_req_id': s:last_req_id, 'jump_if_one': 0 }
     call lsp#send_request('cquery', {
-        \ 'method': '$cquery/derived',
+        \ 'method': '$cquery/' . a:method,
         \ 'params': {
         \   'textDocument': lsp#get_text_document_identifier(),
         \   'position': lsp#get_position(),
@@ -22,6 +22,18 @@ function! cquery#references#derived() abort
         \ })
 
     echom 'Retrieving derived objects...'
+endfunction
+
+function! cquery#references#derived() abort
+    call s:request('derived')
+endfunction
+
+function! cquery#references#base() abort
+    call s:request('base')
+endfunction
+
+function! cquery#references#vars() abort
+    call s:request('vars')
 endfunction
 
 function! s:error_msg(msg) abort
