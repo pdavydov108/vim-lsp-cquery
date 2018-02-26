@@ -12,18 +12,16 @@ function! cquery#references#derived() abort
     let s:last_req_id = s:last_req_id + 1
 
     let l:ctx = { 'counter': len(l:server_names), 'list':[], 'last_req_id': s:last_req_id, 'jump_if_one': 0 }
-    for l:server in l:server_names
-        call lsp#send_request(l:server, {
-            \ 'method': '$cquery/derived',
-            \ 'params': {
-            \   'textDocument': lsp#get_text_document_identifier(),
-            \   'position': lsp#get_position(),
-            \ },
-            \ 'on_notification': function('s:handle_location', [l:ctx, l:server, 'definition']),
-            \ })
-    endfor
+    call lsp#send_request('cquery', {
+        \ 'method': '$cquery/derived',
+        \ 'params': {
+        \   'textDocument': lsp#get_text_document_identifier(),
+        \   'position': lsp#get_position(),
+        \ },
+        \ 'on_notification': function('s:handle_location', [l:ctx, 'cquery', 'definition']),
+        \ })
 
-    echom 'Retrieving derived objects ...'
+    echom 'Retrieving derived objects...'
 endfunction
 
 function! s:handle_location(ctx, server, type, data) abort "ctx = {counter, list, jump_if_one, last_req_id}
