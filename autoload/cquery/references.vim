@@ -11,8 +11,8 @@ function! cquery#references#derived() abort
     call setqflist([])
     let s:last_req_id = s:last_req_id + 1
 
-    let l:ctx = { 'counter': len(l:servers), 'list':[], 'last_req_id': s:last_req_id, 'jump_if_one': 0 }
-    for l:server in l:servers
+    let l:ctx = { 'counter': len(l:server_names), 'list':[], 'last_req_id': s:last_req_id, 'jump_if_one': 0 }
+    for l:server in l:server_names
         call lsp#send_request(l:server, {
             \ 'method': '$cquery/derived',
             \ 'params': {
