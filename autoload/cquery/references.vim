@@ -11,7 +11,7 @@ function! cquery#references#derived() abort
     call setqflist([])
     let s:last_req_id = s:last_req_id + 1
 
-    let l:ctx = { 'counter': len(l:server_names), 'list':[], 'last_req_id': s:last_req_id, 'jump_if_one': 0 }
+    let l:ctx = { 'counter': 1, 'list':[], 'last_req_id': s:last_req_id, 'jump_if_one': 0 }
     call lsp#send_request('cquery', {
         \ 'method': '$cquery/derived',
         \ 'params': {
@@ -22,6 +22,12 @@ function! cquery#references#derived() abort
         \ })
 
     echom 'Retrieving derived objects...'
+endfunction
+
+function! s:error_msg(msg) abort
+    echohl ErrorMsg
+    echom a:msg
+    echohl NONE
 endfunction
 
 function! s:handle_location(ctx, server, type, data) abort "ctx = {counter, list, jump_if_one, last_req_id}
