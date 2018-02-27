@@ -6,7 +6,7 @@ This plugin is an extension of [vim-lsp](https://github.com/prabirshrestha/vim-l
 
 Use your plugin manager of choise. For example if you use [vim-plug](https://github.com/junegunn/vim-plug) add the following lines to your vimrc:
 
-```
+```viml
 " First install vim-lsp, this plugin relies on it:
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
@@ -23,4 +23,4 @@ In addition to those commands defined by `vim-lsp` plugin, this one defines the 
 2. `LspCqueryBase` - get a base class (or a list of base classes) of this class.
 3. `LspCqueryVars` - get a list of all variables that are instances of this user-defined type.
 
-For the explanation, see [this](https://github.com/cquery-project/cquery/wiki/FAQ#references).
+For the explanation, see [cquery FAQ](https://github.com/cquery-project/cquery/wiki/FAQ#references).
