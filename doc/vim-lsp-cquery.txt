@@ -1,3 +1,5 @@
+*vim-lsp-cquery* Language server protocol extensions for cquery.
+
 ====================================================================
 CONTENTS                                   *vim-lsp-cquery-contents*
 
