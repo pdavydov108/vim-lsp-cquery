@@ -2,10 +2,22 @@
 CONTENTS                                   *vim-lsp-cquery-contents*
 
     1. Overwiev............|vim-lsp-cquery-overview|
-    2. Usage...............|vim-lsp-cquery-overview|
+    2. Usage...............|vim-lsp-cquery-usage|
     3. Commands............|vim-lsp-cquery-commands|
     4. Mappings............|vim-lsp-cquery-mappings|
     5. License.............|vim-lsp-cquery-license|
+
+====================================================================
+Overwiev                                   *vim-lsp-cquery-overview*
+
+This plugin provides support for some cquery commands that are 
+extensions to language server protocol and thus can not be 
+implemented in vim-lsp directly. However this commands are usefull 
+for c++ development and understanding existing c++ code bases. 
+Currently, this commands include methods to request a list of all 
+virtual functions that overload this function, all classes that 
+inherit this class, all classes that are bases of this class and a 
+list of all instances of a user defined class.
 
 ====================================================================
 Usage                                         *vim-lsp-cquery-usage*
@@ -23,28 +35,16 @@ here: https://github.com/cquery-project/cquery/wiki/Getting-started
 Usually, this boils down to installing cquery itself (they provide
 binary releases), and getting compile_commands.json file from 
 your build system of choise. In case of cmake, just add
--DCMAKE_EXPORT_COMPILE_COMMANDS=On to the command line. Also, if you have a
-separate directory where you build a project (like build dir), then
-compile_commands.json file will be generated there, so maybe it's a good idea
-to create a symbolic link to it from the root of your project, so that cquery
-can detect it.
+-DCMAKE_EXPORT_COMPILE_COMMANDS=On to the command line. Also, if 
+you have a separate directory where you build a project (like build 
+dir), then compile_commands.json file will be generated there, so 
+maybe it's a good idea to create a symbolic link to it from the root 
+of your project, so that cquery can detect it.
 Make vim-lsp plugin use cquery server, see here:
 https://github.com/prabirshrestha/vim-lsp/wiki/Servers-cquery
 After this steps, vim-lsp-cquery server will be ready to roll. It 
 will define a few additional commands, but no mappings, so please 
 add them if you like.
-
-====================================================================
-Overwiev                                   *vim-lsp-cquery-overview*
-
-This plugin provides support for some cquery commands that are 
-extensions to language server protocol and thus can not be implemented
-in vim-lsp directly. However this commands are usefull for c++ 
-development and understanding existing c++ code bases. Currently, 
-this commands include methods to request a list of all virtual 
-functions that overload this function, all classes that inherit this 
-class, all classes that are bases of this class and a list of all 
-instances of a user defined class.
 
 ====================================================================
 Commands                                   *vim-lsp-cquery-commands*
