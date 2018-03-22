@@ -36,6 +36,10 @@ function! cquery#references#vars() abort
     call s:request('vars')
 endfunction
 
+function! cquery#references#callers() abort
+    call s:request('callers')
+endfunction
+
 function! s:error_msg(msg) abort
     echohl ErrorMsg
     echom a:msg
