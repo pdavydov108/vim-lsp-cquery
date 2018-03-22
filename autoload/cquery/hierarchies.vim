@@ -1,3 +1,5 @@
+let s:last_req_id = 1
+
 function! s:request_hierarchy(method) abort
     let l:server_names = lsp#get_server_names()
 
