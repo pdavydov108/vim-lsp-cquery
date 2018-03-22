@@ -65,7 +65,13 @@ list of locations of all variables that are instances of this type.
 ====================================================================
 Mappings                                   *vim-lsp-cquery-mappings*
 
-This plugin does not define any mappings.
+This plugin does not define any mappings.  However, it is trivial 
+to define your own. For example like so:
+
+    autocmd FileType c,cc,cpp,cxx,h,hpp nnoremap <leader>fv :LspCqueryDerived<CR>
+    autocmd FileType c,cc,cpp,cxx,h,hpp nnoremap <leader>fc :LspCqueryCallers<CR>
+    autocmd FileType c,cc,cpp,cxx,h,hpp nnoremap <leader>fb :LspCqueryBase<CR>
+    autocmd FileType c,cc,cpp,cxx,h,hpp nnoremap <leader>fi :LspCqueryVars<CR>
 
 ====================================================================
 License                                     *vim-lsp-cquery-license*

@@ -22,5 +22,17 @@ In addition to those commands defined by `vim-lsp` plugin, this one defines the 
 1. `LspCqueryDerived` - when used on function, get a list of functions that override this one. When used on a class, get a list of classes that inherit from this one.
 2. `LspCqueryBase` - get a base class (or a list of base classes) of this class.
 3. `LspCqueryVars` - get a list of all variables that are instances of this user-defined type.
+4. `LspCqueryCallers` - get a list of all callers of this function.
+
+## Mappings
+
+No mappings are defined by default. However, it is trivial to define your own. For example like so:
+
+```viml
+autocmd FileType c,cc,cpp,cxx,h,hpp nnoremap <leader>fv :LspCqueryDerived<CR>
+autocmd FileType c,cc,cpp,cxx,h,hpp nnoremap <leader>fc :LspCqueryCallers<CR>
+autocmd FileType c,cc,cpp,cxx,h,hpp nnoremap <leader>fb :LspCqueryBase<CR>
+autocmd FileType c,cc,cpp,cxx,h,hpp nnoremap <leader>fi :LspCqueryVars<CR>
+```
 
 For the explanation, see [cquery FAQ](https://github.com/cquery-project/cquery/wiki/FAQ#references).
