@@ -23,7 +23,7 @@ function! s:request_hierarchy(method) abort
 endfunction
 
 function! cquery#hierarchies#call_hierarchy() abort
-    call s:request('call_hierarchy')
+    call s:request_hierarchy('call_hierarchy')
 endfunction
 
 function! s:error_msg(msg) abort
