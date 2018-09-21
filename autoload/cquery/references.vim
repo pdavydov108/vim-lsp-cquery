@@ -24,8 +24,30 @@ function! s:request(method) abort
     echom 'Retrieving derived objects...'
 endfunction
 
+function! s:text_document_implementation() abort
+    let l:server_names = lsp#get_server_names()
+
+    if len(l:server_names) == 0 || count(l:server_names, 'cquery') == 0
+        echom 'Cquery language server not detected...'
+        return
+    endif
+
+    call setqflist([])
+    let s:last_req_id = s:last_req_id + 1
+
+    let l:ctx = { 'counter': 1, 'list':[], 'last_req_id': s:last_req_id, 'jump_if_one': 0 }
+    call lsp#send_request('cquery', {
+        \ 'method': 'textDocument/implementation',
+        \ 'textDocument': lsp#get_text_document_identifier(),
+        \ 'position': lsp#get_position(),
+        \ 'on_notification': function('s:handle_location', [l:ctx, 'cquery', 'definition']),
+        \ })
+
+    echom 'Retrieving derived objects...'
+endfunction
+
 function! cquery#references#derived() abort
-    call s:request('derived')
+    call s:text_document_implementation()
 endfunction
 
 function! cquery#references#base() abort
