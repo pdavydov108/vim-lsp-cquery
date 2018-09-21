@@ -38,8 +38,10 @@ function! s:text_document_implementation() abort
     let l:ctx = { 'counter': 1, 'list':[], 'last_req_id': s:last_req_id, 'jump_if_one': 0 }
     call lsp#send_request('cquery', {
         \ 'method': 'textDocument/implementation',
-        \ 'textDocument': lsp#get_text_document_identifier(),
-        \ 'position': lsp#get_position(),
+        \ 'params': {
+        \   'textDocument': lsp#get_text_document_identifier(),
+        \   'position': lsp#get_position(),
+        \ },
         \ 'on_notification': function('s:handle_location', [l:ctx, 'cquery', 'definition']),
         \ })
 
